@@ -3,27 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz - App</title>
-    <link rel="stylesheet" href="style/style.css">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="style/home.css">
 </head>
 <body>
     <div class="app">
         <h1>Quiz App</h1>
         <div class="quiz">
             <div id="question">
-                <h2>Question goes here</h2>
+                <h2>Select Your Topics</h2>
             </div>
-            <div id="answer-buttons">
-                <div class="btn">Answer - 1</div>
-                <div class="btn">Answer - 2</div>
-                <div class="btn">Answer - 3</div>
-                <div class="btn">Answer - 4</div>
+            <div class="quiz-topics">
+                <div class="topics topics-1">
+                    <input type="checkbox" name="radio" value="addition">
+                    <label for="addition">Addition</label>    
+                </div>
+                <div class="topics topics-2">
+                    <input type="checkbox" name="radio" value="substraction">
+                    <label for="substraction">Substraction</label>
+                </div>
+                <div class="topics topics-3">
+                    <input type="checkbox" name="radio" value="multiplication">
+                    <label for="multiplication">Multiplication</label>
+                </div>
+                <div class="topics topics-4">
+                    <input type="checkbox" name="radio" value="division">
+                    <label for="division">Division</label>
+                </div>
             </div>
-            <button id="next-btn">
-                Next
+            <button id="next-btn" onclick="storeRadioValue()">
+                Start Quiz
             </button>
         </div>
     </div>
-    <script src="script/index.js"></script>
+    <script>
+        function storeRadioValue(){
+            let options = document.getElementsByName("radio");
+
+            let optionsArray = [];
+            for (let i = 0; i < options.length; i++) {
+                if (options[i].checked) {
+                    optionsArray.push(options[i].value); // Push the value of the checked checkbox into the array
+                }
+            }
+            localStorage.setItem("options", JSON.stringify(optionsArray));
+            console.log(localStorage.getItem("options"));
+            window.location.href = "home.html";
+
+            
+        }
+    </script>
 </body>
 </html>
